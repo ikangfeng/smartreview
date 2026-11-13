@@ -60,20 +60,19 @@ smartreview/
 │   ├── rag/                  #   RAG 精简复用（自 zhiqida-rag）：加载/切分/嵌入/检索/重排
 │   ├── review/               #   拆解/元数据/上下文/判定解析/调度/报告
 │   ├── rules.py              #   确定性风控规则引擎（纯函数，三类 matcher）
-│   ├── data/                 #   运行时数据（.gitignore）
-│   └── tests/                #   单测（pytest，36 passed）
+│   ├── data/                 #   运行时数据（不入库，仅提交 kb/ 法条语料）
+│   └── tests/                #   单测（pytest，43 passed）
 ├── frontend/                 # Vue3 + Vite + TS + Element Plus（5174）
 │   └── src/views/            #   上传审查/审查中/结果/历史记录/规则配置/知识库管理/模型配置
-├── samples/                  # 合同样例（docx/txt）+ generate_samples.py
-├── scripts/                  # start.bat / start.sh / seed_kb.py
-├── deploy/                   # Dockerfile×2 + docker-entrypoint.sh + nginx.conf + docker-compose.yml
-└── docs/                     # 技术架构设计文档
+├── samples/                  # 合同样例（docx/txt）+ eval/ 人工标注集（调优集 + holdout）
+├── scripts/                  # start.bat / start.sh / seed_kb.py / eval*.py / ci_eval.sh
+└── deploy/                   # Dockerfile×2 + docker-entrypoint.sh + nginx.conf + docker-compose.yml
 ```
 
 ## 测试
 
 ```bash
-cd backend && python -m pytest tests -q      # 36 passed
+cd backend && python -m pytest tests -q      # 43 passed
 cd frontend && npm run build                 # vue-tsc 类型检查 + 产物构建
 ```
 
