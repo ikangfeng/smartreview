@@ -1,0 +1,26 @@
+# =============================================================================
+# SmartReview 后端镜像（构建上下文 = 仓库根）
+# =============================================================================
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+WORKDIR /app
+
+# 1) Python 依赖（先装依赖，充分利用缓存层）
+COPY backend/requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# 2) 应用代码（backend 为运行根目录；密钥由 compose env_file 注入，不随镜像）
+COPY backend/ /app/
+
+# 3) 首启种子脚本 + 入口（幂等构建法律知识库索引）
+COPY scripts/seed_kb.py /app/seed_kb.py
+COPY deploy/docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
+
+EXPOSE 8002
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8002"]

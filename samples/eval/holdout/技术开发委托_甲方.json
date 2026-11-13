@@ -1,0 +1,33 @@
+{
+  "contract_file": "test_quality_issues.txt",
+  "contract_type": "技术服务/开发合同",
+  "stance": "甲方",
+  "task_id": "54aafdd63ef042d28b89c186357ee93f",
+  "note": "Holdout 样本（不参与规则调优）：技术开发委托合同，重点考察错别字/半角标点等文本瑕疵与高危条款的区分能力。",
+  "expected": [
+    {"clause_id": "1.1", "level": "无", "reason": "开发标的明确，仅含半角逗号"},
+    {"clause_id": "1.2", "level": "低", "reason": "含错别字「技术运帷」，义务本身正常"},
+    {"clause_id": "1.3", "level": "无", "reason": "交付物清单明确"},
+    {"clause_id": "2.1", "level": "无", "reason": "300 万含税总价明确"},
+    {"clause_id": "2.2", "level": "低", "reason": "预付 30% 处于企业红线临界值"},
+    {"clause_id": "2.3", "level": "低", "reason": "含错别字「甲万」，付款节点正常"},
+    {"clause_id": "2.4", "level": "低", "reason": "税费由乙方承担对甲方有利，但含「。。」重复标点"},
+    {"clause_id": "2.5", "level": "无", "reason": "发票类型与付款前置条件明确"},
+    {"clause_id": "3.1", "level": "无", "reason": "120 日交付期明确"},
+    {"clause_id": "3.2", "level": "中", "reason": "15 日验收且逾期视为通过，甲方异议窗口偏短"},
+    {"clause_id": "3.3", "level": "低", "reason": "含错别字「质报期」，12 个月质保本身达标"},
+    {"clause_id": "3.4", "level": "无", "reason": "48 小时响应与免费修复明确"},
+    {"clause_id": "4.1", "level": "中", "reason": "开发成果知识产权双方共有，甲方未取得独占"},
+    {"clause_id": "4.2", "level": "高", "reason": "乙方可将通用技术组件用于其他客户，甲方无排他保障"},
+    {"clause_id": "4.3", "level": "低", "reason": "保密期限为终止后 3 年，属合理范围"},
+    {"clause_id": "5.1", "level": "高", "reason": "违约金累计上限 50%，远超 20% 红线"},
+    {"clause_id": "5.2", "level": "中", "reason": "甲方逾期按日 0.05% 支付违约金，比例不高但未设累计上限"},
+    {"clause_id": "5.3", "level": "中", "reason": "赔偿含预期利润损失，敞口偏大"},
+    {"clause_id": "5.4", "level": "低", "reason": "不可抗力免责但排除乙方自身故障，约定相对合理"},
+    {"clause_id": "6.1", "level": "中", "reason": "约定乙方所在地仲裁，增加甲方维权成本"},
+    {"clause_id": "6.2", "level": "无", "reason": "终局裁决条款，属常规"},
+    {"clause_id": "7.1", "level": "无", "reason": "补充协议效力约定明确"},
+    {"clause_id": "7.2", "level": "无", "reason": "份数与生效条款，属常规"},
+    {"clause_id": "7.3", "level": "低", "reason": "变更需书面确认，但日常事项可邮件/电话确认，留痕偏弱"}
+  ]
+}

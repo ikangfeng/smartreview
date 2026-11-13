@@ -1,0 +1,19 @@
+{
+  "contract_file": "软件委托开发合同样例.txt",
+  "contract_type": "技术服务/开发合同",
+  "stance": "甲方",
+  "task_id": "ff5b3953bd1c436aae246d0152ac5fd4",
+  "note": "Holdout 样本（不参与规则调优）：条款均衡的标准开发合同，用于检验系统在「干净合同」上是否克制、不制造高危误报。",
+  "expected": [
+    {"clause_id": "第一条", "level": "无", "reason": "开发标的与交付物明确"},
+    {"clause_id": "第二条", "level": "低", "reason": "开发周期可因需求变更顺延，时间约束略松"},
+    {"clause_id": "第三条", "level": "低", "reason": "三期付款 30/50/20，预付处于红线临界"},
+    {"clause_id": "第四条", "level": "低", "reason": "验收期 10 个工作日，逾期视为通过"},
+    {"clause_id": "第五条", "level": "无", "reason": "知识产权归甲方独占，且有第三方不侵权保证"},
+    {"clause_id": "第六条", "level": "无", "reason": "保密义务不因合同终止解除，约定对甲方有利"},
+    {"clause_id": "第七条", "level": "无", "reason": "违约金 0.1%/日、上限 15%，低于 20% 红线"},
+    {"clause_id": "第八条", "level": "无", "reason": "标准不可抗力条款，程序与后果清晰"},
+    {"clause_id": "第九条", "level": "无", "reason": "约定甲方所在地法院管辖，对甲方有利"},
+    {"clause_id": "第十条", "level": "无", "reason": "两次整改不过甲方可解除并要求退款，保护充分"}
+  ]
+}

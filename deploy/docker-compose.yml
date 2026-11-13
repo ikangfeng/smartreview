@@ -1,0 +1,70 @@
+# =============================================================================
+# SmartReview docker-compose
+#   前置：复制 backend/.env.example → backend/.env 并按环境填写密钥
+#   - 基础部署：docker compose up -d --build（前端 http://localhost:8080）
+#   - 含本地 vLLM（GPU 服务器）：docker compose --profile gpu up -d --build
+# =============================================================================
+name: smartreview
+
+services:
+  # ---- 后端 FastAPI（8002）----
+  backend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.backend
+    image: smartreview-backend:0.1.0
+    restart: unless-stopped
+    env_file:
+      - path: ../backend/.env
+        required: false
+    ports:
+      - "8002:8002"
+    volumes:
+      # 上传/报告/知识库/DB 持久化（复用本地 dev 数据目录）
+      - ../backend/data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8002/health', timeout=3)"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ---- 前端 nginx（80 → 宿主机 8080）----
+  frontend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.frontend
+    image: smartreview-frontend:0.1.0
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_started
+
+  # ---- 本地 vLLM（可选；profile gpu，仅 NVIDIA GPU 服务器启用）----
+  vllm:
+    profiles: ["gpu"]
+    image: vllm/vllm-openai:latest
+    restart: unless-stopped
+    # 与 backend/.env 中 SMARTREVIEW_VLLM_* 保持一致
+    command:
+      - --model=Qwen/Qwen2.5-14B-Instruct-AWQ
+      - --served-model-name=Qwen2.5-14B-Instruct
+      - --quantization=awq
+      - --host=0.0.0.0
+      - --port=8001
+    ports:
+      - "8001:8001"
+    volumes:
+      - vllm-cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  vllm-cache:

@@ -1,0 +1,36 @@
+# ===== SmartReview .gitignore =====
+
+# ---- 密钥与运行时数据 ----
+backend/.env
+# 运行时产物不入库，但保留法条知识库语料（clone 后 /knowledge/index 才能建索引）
+backend/data/*
+!backend/data/kb/
+!backend/data/kb/**
+
+# ---- 日志与评测产物 ----
+logs/
+backend/logs/
+*.log
+
+# ---- Python ----
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ---- 前端 ----
+frontend/node_modules/
+frontend/dist/
+
+# ---- 部署 ----
+deploy/.env
+
+# ---- IDE / OS ----
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+backend/.env.local
+
+# ---- 临时文件 ----
+.~*
+.screenshots/

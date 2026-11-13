@@ -1,0 +1,19 @@
+{
+  "contract_file": "采购合同样例.txt",
+  "contract_type": "采购/买卖合同",
+  "stance": "甲方",
+  "task_id": "e2615a0970d14211bcae16ce837b121f",
+  "note": "低风险标准合同样例（买方立场）：用于验证系统不会在结构完整的合同上大面积误报，是精确率的守门样本。",
+  "expected": [
+    {"clause_id": "第一条", "level": "无", "reason": "标的与价格以附件清单为准，约定完整"},
+    {"clause_id": "第二条", "level": "低", "reason": "30 日交付期明确，逾期需书面告知"},
+    {"clause_id": "第三条", "level": "低", "reason": "15 日检验期合理，7 日补齐或更换"},
+    {"clause_id": "第四条", "level": "低", "reason": "验收后付 95%、留 5% 质保金，对买方有利"},
+    {"clause_id": "第五条", "level": "中", "reason": "合作技术成果双方共有，甲方使用需对方同意"},
+    {"clause_id": "第六条", "level": "中", "reason": "逾期违约金 0.5%/日偏高，违约金总额上限 30% 超 20% 基线"},
+    {"clause_id": "第七条", "level": "无", "reason": "双向保密义务，约定完整"},
+    {"clause_id": "第八条", "level": "低", "reason": "标准不可抗力条款，程序与后果清晰"},
+    {"clause_id": "第九条", "level": "中", "reason": "约定乙方所在地法院管辖，不利于甲方"},
+    {"clause_id": "第十条", "level": "无", "reason": "生效与份数条款，属常规"}
+  ]
+}
